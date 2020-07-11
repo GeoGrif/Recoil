@@ -6,8 +6,8 @@ using UnityEngine.Assertions;
 public class Enemy : MonoBehaviour
 {
     public int health = 10;
-    public float moveSpeed = 3.0f;
-    public float aggroRange = 5.0f;
+    //public float moveSpeed = 3.0f;
+    //public float aggroRange = 5.0f;
     public float range = 5.0f;
 
     public bool lineOfSight = false;
@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     public BoxCollider2D targetShieldCollider;
     public Vector3 playerPos;
     private float tempFireRate;
-    private bool hasFired = false;
     private Vector3 dir;
 
     void Start()
@@ -39,13 +38,10 @@ public class Enemy : MonoBehaviour
 
         if (hit.collider != targetCollider && hit.collider != targetShieldCollider)
         {
-            Debug.Log("hit " + hit.collider.gameObject);
-            //move around
             lineOfSight = false;
         }
         else
         {
-            Debug.Log("player is in los " + hit.collider.gameObject);
             lineOfSight = true;
         }                       
     }

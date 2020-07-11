@@ -73,7 +73,6 @@ public abstract class AimScript : MonoBehaviour
 
         //instantiate at the player's position and at player's rotation
         projectile = Instantiate(ProjectileObject, handPosition, Quaternion.Euler(rot));
-        Debug.Log("Shot fired!");
 
         gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
 
