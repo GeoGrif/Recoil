@@ -6,7 +6,11 @@ using UnityEngine.Assertions;
 public class CameraScript : MonoBehaviour
 {
 
-    
+
+    private static float shakeDuration = 0f;
+    private float shakeMagnitude = 0.1f;
+    private float dampingSpeed = 1f;
+
     GameObject player;
     public float height = -10.0f;
 
@@ -16,6 +20,9 @@ public class CameraScript : MonoBehaviour
     {
         player = GameObject.Find("Player");
         Assert.IsNotNull(player, "Player was null");
+
+        //initialPosition = transform.localPosition;
+
     }
 
 
@@ -23,9 +30,30 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, height);
 
 
+        if (shakeDuration > 0)
+        {
+
+            transform.localPosition = player.GetComponent<Transform>().position + Random.insideUnitSphere * shakeMagnitude;
+
+            shakeDuration -= Time.deltaTime * dampingSpeed;
+
+            //Debug.Log("ShakeDuration is" )
+
+        }
+        else
+        {
+            shakeDuration = 0f;
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, height);
+        }
+
+    }
+
+    public static void TriggerShake()
+    {
+        shakeDuration = .5f;
+        Debug.Log("TriggerShake");
     }
 }
 
