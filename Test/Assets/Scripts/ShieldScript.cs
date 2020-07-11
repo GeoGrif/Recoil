@@ -9,11 +9,14 @@ public class ShieldScript : MonoBehaviour
     public float reflectForce = 250.0f;
     public int shieldHealth = 100;
     public float shieldRechargeTime = 3.0f;
+    public float shieldDownTime = 0.5f;
+    private float tempShieldDownTime = 0.5f;
     private float tempShieldRechargeTime = 3.0f;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D collider;
     bool enableShield = false;
+    bool shieldDown = false;
     public static bool shieldIsActive = false;
     Vector3 originalShieldSize;
 
@@ -35,6 +38,7 @@ public class ShieldScript : MonoBehaviour
 
         tempShieldRechargeTime = shieldRechargeTime;
         startingShieldHealth = shieldHealth;
+        tempShieldDownTime = shieldDownTime;
     }
 
     // Update is called once per frame
@@ -62,9 +66,10 @@ public class ShieldScript : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             enableShield = false;
+            shieldDown = true;
         }
 
-        if (enableShield && !shieldIsActive && !shieldRecharging)
+        if (enableShield && !shieldIsActive && !shieldRecharging && !shieldDown)
         {
             ActivateShield();
             shieldIsActive = true;
@@ -84,11 +89,24 @@ public class ShieldScript : MonoBehaviour
         if(shieldRecharging)
         {
                 tempShieldRechargeTime -= Time.deltaTime;
+
                 if(tempShieldRechargeTime <= 0)
                 {
                     shieldHealth = startingShieldHealth;
                     shieldRecharging = false;
+                    tempShieldRechargeTime = shieldRechargeTime;
                 }
+        }
+
+        if(shieldDown)
+        {
+            tempShieldDownTime -= Time.deltaTime;
+
+            if (tempShieldDownTime <= 0)
+            {
+                shieldDown = false;
+                tempShieldDownTime = shieldDownTime;
+            }
         }
     }
 
