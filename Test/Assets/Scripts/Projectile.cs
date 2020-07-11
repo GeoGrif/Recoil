@@ -9,6 +9,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float maxVelocity = 50.0f;
     [SerializeField] private float minVelocity = 5.0f;
     [SerializeField] private float timeToDestroy = 1.5f;
+    [SerializeField] private float ExplosiveRange = 5.5f;
+    [SerializeField] private float ExplosivePower = 500.5f;
+
+
     private float tempTimeToDestroy = 1.5f;
 
     void Start()
@@ -62,12 +66,43 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
-        Debug.Log("a collision has occured ");
-
-        if (collision.collider.gameObject.tag == "projectiles" && collision.otherCollider.gameObject.tag == "projectiles")
+        //if there is a collision and it's with this object. 
+        if (collision.collider.gameObject.tag == "Projectile" && collision.otherCollider.gameObject.tag == "Projectile")
         {
             Debug.Log("projectile has hit another projectile ");
+
+            Vector3 explosionPos = transform.position;
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, ExplosiveRange);
+
+            foreach (Collider2D hit in colliders)
+            {
+                Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+
+                if (rb != null) 
+                {
+                    Vector3 hitPosition = rb.position;
+
+                    var explosionDir = hitPosition - explosionPos;
+                    var explosionDistance = explosionDir.magnitude;
+
+                    explosionDistance /= ExplosiveRange;
+
+                    explosionDir.Normalize();
+
+                    float force = Mathf.Lerp(0, ExplosivePower, (1 - explosionDistance));
+
+                    Vector3 forceDirection = force * explosionDir;
+
+                    Debug.Log("Evplosive force " + force);
+                    Debug.Log("explosionDistance " + explosionDistance);
+                    Debug.Log("Evplosive direction vector " + forceDirection);
+                    Debug.Log("explosing on object: " + rb.gameObject.name);
+
+                    rb.AddForce(forceDirection, ForceMode2D.Impulse);
+                }
+                  
+            }
 
             if (checkForMinVelocity && (rb.velocity.x < minVelocity && rb.velocity.x > -minVelocity) && (rb.velocity.y < minVelocity && rb.velocity.y > -minVelocity))
             {
@@ -81,6 +116,9 @@ public class Projectile : MonoBehaviour
             {
                 tempTimeToDestroy = timeToDestroy;
             }
+
+            Destroy(collision.otherCollider.gameObject);
+            Destroy(collision.collider.gameObject);
         }
     }
 }
