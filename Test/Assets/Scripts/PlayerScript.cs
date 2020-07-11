@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Projectile" && collision.otherCollider != this.gameObject.transform.GetChild(4))
+        if (collision.collider.tag == "Projectile" && collision.otherCollider.gameObject.name != "Shield")
         {
             health -= 10;
             Debug.Log("the current health is: " + health);
