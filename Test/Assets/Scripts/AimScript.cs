@@ -27,22 +27,34 @@ public abstract class AimScript : MonoBehaviour
     public float playerPushSpeed = 300.0f;
 
 
+    public float timeSpan;
+
+    /**
+    * the time in seconds to full charge 
+    */
+    [SerializeField] protected float TotalChargeTime = 0.5f;
+
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
-        Aim();
-
-        ObjectPosition = gameObject.transform.position;
-
-        if (ShouldShoot() && !ShieldScript.shieldIsActive)
+        if (GameController.isPaused == false)
         {
-            Shoot();
+            Aim();
+
+            ObjectPosition = gameObject.transform.position;
+            if (ShouldShoot())
+            {
+                Shoot();
+            }
         }
     }
 
@@ -67,18 +79,31 @@ public abstract class AimScript : MonoBehaviour
 
         Vector3 rot = transform.rotation.eulerAngles;
         rot = new Vector3(rot.x, rot.y, rot.z + 180);      
-     
 
-        Vector3 handPosition = gameObject.transform.GetChild(0).position;
+        int totalShots = (int)(timeSpan / TotalChargeTime) + 1; //calculate the total charge based on 
 
-        //instantiate at the player's position and at player's rotation
-        projectile = Instantiate(ProjectileObject, handPosition, Quaternion.Euler(rot));
-        Debug.Log("Shot fired!");
+        for (int i = 0; i < totalShots; i++)
+        {
+            if (i >= 4) break;
 
-        gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
+            rot = new Vector3(rot.x, rot.y, rot.z + (90 * i));
+
+            Vector3 handPosition = gameObject.transform.GetChild(i).position;
+
+            //instantiate at the player's position and at player's rotation
+            projectile = Instantiate(ProjectileObject, handPosition, Quaternion.Euler(rot));
+
+            Vector3 direction = handPosition - gameObject.transform.position;
+
+            projectile.AddForce(direction * projectileSpeed);
+
+            gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
+        }
+    }
+
+    
 
 
         //add the force in the correct direction
-        projectile.AddForce(transform.up * projectileSpeed);
-    }
+    
 }

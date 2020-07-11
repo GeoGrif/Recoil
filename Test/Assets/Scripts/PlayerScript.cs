@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
 
     float health = 100;
     Rigidbody2D prb;
+
 
 
     // Start is called before the first frame update
@@ -20,10 +22,18 @@ public class PlayerScript : MonoBehaviour
         if (collision.collider.tag == "Projectile")
         {
             health -= 10;
-            Debug.Log(health);
+            Debug.Log("the current health is: " + health);
         }
     }
 
+    private void Update()
+    {
+        if (health < 0)
+        {
+            Time.timeScale = 0f;
+            GameController.isPaused = true;
+        }
+    }
 
 
 }
