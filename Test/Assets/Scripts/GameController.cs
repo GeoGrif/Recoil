@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    [SerializeField] private GameObject UI;
+    private GameObject UI;
     
     [HideInInspector] public static bool isPaused = false;
 
@@ -43,6 +43,9 @@ public class GameController : MonoBehaviour
     private GameController() 
     {
         _Projectiles = new List<GameObject>();
+
+        UI = GameObject.FindGameObjectWithTag("Canvas");
+        Debug.Log("CANVAS");
     }
 
     /**
@@ -73,7 +76,7 @@ public class GameController : MonoBehaviour
         if (isPaused)
         {
             UI.SetActive(true);
-        }   
+        }
         else
         {
             UI.SetActive(false);
