@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536394916402775202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5019441942849387978}
@@ -83,7 +83,7 @@ MonoBehaviour:
   ProjectileObject: {fileID: 2319002751561275453, guid: 6a5d0a602d3a0db47bc850d427c30dd3,
     type: 3}
   projectileSpeed: 300
-  playerblowback: 10
+  playerPushSpeed: 300
 --- !u!212 &5019441942849387980
 SpriteRenderer:
   m_ObjectHideFlags: 0
