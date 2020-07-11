@@ -33,6 +33,8 @@ public abstract class AimScript : MonoBehaviour
     {
         Aim();
 
+        ObjectPosition = gameObject.transform.position;
+
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
@@ -61,6 +63,8 @@ public abstract class AimScript : MonoBehaviour
         //instantiate at the player's position and at player's rotation
         projectile = Instantiate(ProjectileObject, transform.position, transform.rotation);
         Debug.Log("Shot fired!");
+
+        gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * projectileSpeed);
 
 
         //add the force in the correct direction
