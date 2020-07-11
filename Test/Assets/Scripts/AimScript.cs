@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,8 +61,12 @@ public abstract class AimScript : MonoBehaviour
     {
         Rigidbody2D projectile;
 
+        Vector3 rot = transform.rotation.eulerAngles;
+
+        rot = new Vector3(rot.x, rot.y, rot.z + 180);
+
         //instantiate at the player's position and at player's rotation
-        projectile = Instantiate(ProjectileObject, transform.position, transform.rotation);
+        projectile = Instantiate(ProjectileObject, transform.position, Quaternion.Euler(rot));
         Debug.Log("Shot fired!");
 
         gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * projectileSpeed);
@@ -70,5 +75,4 @@ public abstract class AimScript : MonoBehaviour
         //add the force in the correct direction
         projectile.AddForce(transform.up * projectileSpeed);
     }
-
 }
