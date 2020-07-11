@@ -7,11 +7,6 @@ public abstract class AimScript : MonoBehaviour
 {
 
     /**
-    * The current world position this is aiming at.  
-    */
-    [SerializeField]  private Vector3 AimPosition;
-
-    /**
     * the position the object this script is aattached to is currently at.  
     */
     [SerializeField]  private Vector3 ObjectPosition;
@@ -19,33 +14,34 @@ public abstract class AimScript : MonoBehaviour
     //add our projectile prefab in editor
     [SerializeField] public Rigidbody2D ProjectileObject;
 
-
-
     [SerializeField]  public float projectileSpeed = 100.0f;
 
 
     public float playerPushSpeed = 300.0f;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float timeSpan;
+
+    /**
+    * the time in seconds to full charge 
+    */
+    [SerializeField] protected float TotalChargeTime = 0.5f;
+
+
 
     // Update is called once per frame
     void Update()
     {
-        Aim();
-
-        ObjectPosition = gameObject.transform.position;
-
-        if (ShouldShoot() && !ShieldScript.shieldIsActive)
+        if (GameController.isPaused == false)
         {
-            Shoot();
+            Aim();
+
+            if (ShouldShoot())
+            {
+                Shoot();
+            }
         }
     }
-
 
     /**
     * weather the object this script is attached to should shoot or not.  
@@ -67,17 +63,26 @@ public abstract class AimScript : MonoBehaviour
 
         Vector3 rot = transform.rotation.eulerAngles;
         rot = new Vector3(rot.x, rot.y, rot.z + 180);      
-     
 
-        Vector3 handPosition = gameObject.transform.GetChild(0).position;
+        int totalShots = (int)(timeSpan / TotalChargeTime) + 1; //calculate the total charge based on 
 
-        //instantiate at the player's position and at player's rotation
-        projectile = Instantiate(ProjectileObject, handPosition, Quaternion.Euler(rot));
+        for (int i = 0; i < totalShots; i++)
+        {
+            if (i >= 4) break;
 
-        gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
+            rot = new Vector3(rot.x, rot.y, rot.z + (90 * i));
 
+            Vector3 handPosition = gameObject.transform.GetChild(i).position;
 
-        //add the force in the correct direction
-        projectile.AddForce(transform.up * projectileSpeed);
+            //instantiate at the player's position and at player's rotation
+            projectile = Instantiate(ProjectileObject, handPosition, Quaternion.Euler(rot));
+
+            Vector3 direction = handPosition - gameObject.transform.position;
+
+            projectile.AddForce(direction * projectileSpeed);
+
+            gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
+        }
     }
+    
 }

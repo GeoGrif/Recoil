@@ -12,69 +12,23 @@ public class GameController : MonoBehaviour
 
     [HideInInspector] public int level = 1;
 
-    private static GameController privateInstance;
-
     private List<GameObject> _Projectiles;
-   
 
 
-    public static GameController instance
+    private void Start()
     {
-        get
-        {
-            if (privateInstance == null)
-            {
-                //if there is no instance of GameController, create one if/when it's called in script
-                privateInstance = FindObjectOfType<GameController>();
-                if (privateInstance == null)
-                {
-                    privateInstance = new GameObject("Created Game Controller", typeof(GameController)).GetComponent<GameController>();
-                }
-            }
-
-            return privateInstance;
-        }
-        private set
-        {
-            privateInstance = value;
-        }
-    }
-
-    private GameController() 
-    {
-        _Projectiles = new List<GameObject>();
-
         UI = GameObject.FindGameObjectWithTag("Canvas");
-        Debug.Log("CANVAS");
+        
+        if(UI == null)Debug.Log("CANVAS");
     }
 
-    /**
-    * Add a new projectile to the set of projectiles currently in play. 
-    */
-    public void AddProjectile(GameObject projectile)
-    {
-        _Projectiles.Add(projectile);
-    }
-
-    /**
-     * Add a new projectile to the set of projectiles currently in play. 
-    */  
-    public void RemoveProjectile(GameObject projectile) 
-    {
-        _Projectiles.Remove(projectile);
-    }
-
-
-    void Awake()
-    {
-        //make sure we don't destroy this instance
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     private void Update()
     {
         if (isPaused)
         {
+            Debug.Log("is paused");
+
             UI.SetActive(true);
         }
         else
