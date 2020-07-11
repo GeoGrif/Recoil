@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +9,17 @@ public class PlayerAimScript : AimScript
     Vector3 worldMousePos;
     
 
+    private float timeSpan;
+
+    /**
+    * the time in seconds to full charge 
+    */
+    [SerializeField] private float TotalChargeTime = 0.5f;
+
     
     public override bool ShouldShoot()
     {
-        return Input.GetMouseButtonDown(0);
+        return Input.GetMouseButtonUp(0);
     }
 
 
@@ -20,6 +28,21 @@ public class PlayerAimScript : AimScript
         mousePos = Input.mousePosition;
         worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+        
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            timeSpan = 0;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            timeSpan += Time.deltaTime;
+        }
+        else if (timeSpan > 0)
+        {
+            Debug.Log(" The current time span of the click is " + timeSpan);
+        }
+        
        Vector3 handPosition = gameObject.transform.GetChild(0).position;
 
         Vector2 direction = new Vector2(worldMousePos.x - handPosition.x, worldMousePos.y - transform.position.y);
