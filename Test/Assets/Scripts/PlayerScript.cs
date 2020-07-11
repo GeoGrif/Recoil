@@ -10,6 +10,8 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D prb;
 
 
+    
+
 
     // Start is called before the first frame update
     void Start()

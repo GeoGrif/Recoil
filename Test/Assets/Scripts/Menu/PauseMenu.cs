@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        gameObject.SetActive(true);
+    }
+
     public void Retry()
     {
         GameController.isPaused = false;
@@ -15,6 +20,5 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("EnemyTest");
 
     }
-
 
 }

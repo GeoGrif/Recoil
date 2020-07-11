@@ -7,19 +7,12 @@ public abstract class AimScript : MonoBehaviour
 {
 
     /**
-    * The current world position this is aiming at.  
-    */
-    [SerializeField]  private Vector3 AimPosition;
-
-    /**
     * the position the object this script is aattached to is currently at.  
     */
     [SerializeField]  private Vector3 ObjectPosition;
 
     //add our projectile prefab in editor
     [SerializeField] public Rigidbody2D ProjectileObject;
-
-
 
     [SerializeField]  public float projectileSpeed = 100.0f;
 
@@ -35,13 +28,6 @@ public abstract class AimScript : MonoBehaviour
     [SerializeField] protected float TotalChargeTime = 0.5f;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-
 
     // Update is called once per frame
     void Update()
@@ -50,14 +36,12 @@ public abstract class AimScript : MonoBehaviour
         {
             Aim();
 
-            ObjectPosition = gameObject.transform.position;
             if (ShouldShoot())
             {
                 Shoot();
             }
         }
     }
-
 
     /**
     * weather the object this script is attached to should shoot or not.  
@@ -100,10 +84,5 @@ public abstract class AimScript : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
         }
     }
-
-    
-
-
-        //add the force in the correct direction
     
 }
