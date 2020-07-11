@@ -21,6 +21,7 @@ public abstract class AimScript : MonoBehaviour
 
 
     public float projectileSpeed = 100.0f;
+    public float playerPushSpeed = 300.0f;
 
 
     // Start is called before the first frame update
@@ -69,7 +70,7 @@ public abstract class AimScript : MonoBehaviour
         projectile = Instantiate(ProjectileObject, transform.position, Quaternion.Euler(rot));
         Debug.Log("Shot fired!");
 
-        gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * projectileSpeed);
+        gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
 
 
         //add the force in the correct direction
