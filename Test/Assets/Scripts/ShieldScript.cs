@@ -10,7 +10,7 @@ public class ShieldScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     BoxCollider2D collider;
     bool enableShield = false;
-    bool shieldIsActive = false;
+    public static bool shieldIsActive = false;
     Vector3 originalShieldSize;
 
     //bool to use to apply shield length change
