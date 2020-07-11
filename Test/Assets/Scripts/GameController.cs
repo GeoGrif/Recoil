@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
 
     private static GameController privateInstance;
 
+    private List<GameObject> _Projectiles;
+   
+
     public static GameController instance
     {
         get
@@ -29,6 +32,28 @@ public class GameController : MonoBehaviour
             privateInstance = value;
         }
     }
+
+    private GameController() 
+    {
+        _Projectiles = new List<GameObject>();
+    }
+
+    /**
+    * Add a new projectile to the set of projectiles currently in play. 
+    */
+    public void AddProjectile(GameObject projectile)
+    {
+        _Projectiles.Add(projectile);
+    }
+
+    /**
+     * Add a new projectile to the set of projectiles currently in play. 
+    */  
+    public void RemoveProjectile(GameObject projectile) 
+    {
+        _Projectiles.Remove(projectile);
+    }
+
 
     void Awake()
     {

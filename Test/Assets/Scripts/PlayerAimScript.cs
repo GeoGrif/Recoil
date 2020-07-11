@@ -19,7 +19,9 @@ public class PlayerAimScript : AimScript
         mousePos = Input.mousePosition;
         worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        Vector2 direction = new Vector2(worldMousePos.x - transform.position.x, worldMousePos.y - transform.position.y);
+       Vector3 handPosition = gameObject.transform.GetChild(0).position;
+
+        Vector2 direction = new Vector2(worldMousePos.x - handPosition.x, worldMousePos.y - transform.position.y);
 
 
         //turn to face a direction

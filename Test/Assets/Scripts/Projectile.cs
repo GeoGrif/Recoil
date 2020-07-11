@@ -36,4 +36,14 @@ public class Projectile : MonoBehaviour
     }
 
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        Debug.Log("a collision has occured ");
+
+        if (collision.collider.gameObject.tag == "projectiles" && collision.otherCollider.gameObject.tag == "projectiles")
+        {
+            Debug.Log("projectile has hit another projectile ");
+        }
+    }
 }
