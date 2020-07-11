@@ -11,6 +11,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float timeToDestroy = 1.5f;
     [SerializeField] private float ExplosiveRange = 0.1f;
     [SerializeField] private float ExplosivePower = 10f;
+    [SerializeField] public float Damage = 10.0f;
+
 
 
     private float tempTimeToDestroy = 1.5f;
