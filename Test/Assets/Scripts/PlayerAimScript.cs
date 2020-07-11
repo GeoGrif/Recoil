@@ -11,7 +11,7 @@ public class PlayerAimScript : AimScript
     
     public override bool ShouldShoot()
     {
-        return Input.GetMouseButtonUp(0);
+        return Input.GetMouseButtonUp(0) && !ShieldScript.shieldIsActive;
     }
 
 

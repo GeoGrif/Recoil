@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
 
-    float health = 100;
+    public float health = 100;
     Rigidbody2D prb;
     
 

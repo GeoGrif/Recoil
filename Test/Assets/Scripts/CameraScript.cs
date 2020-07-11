@@ -31,11 +31,13 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
 
-
         if (shakeDuration > 0)
         {
+            Vector3 shakePoint = Random.insideUnitCircle * shakeMagnitude;
 
-            transform.localPosition = player.GetComponent<Transform>().position + Random.insideUnitSphere * shakeMagnitude;
+            shakePoint.z = gameObject.transform.position.z;
+
+            transform.position = player.GetComponent<Transform>().position + shakePoint;
 
             shakeDuration -= Time.deltaTime * dampingSpeed;
 
