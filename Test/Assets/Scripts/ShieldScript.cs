@@ -7,16 +7,25 @@ public class ShieldScript : MonoBehaviour
     //can be used to change the shield length
     public float shieldLengthModifier = 2.0f;
     public float reflectForce = 250.0f;
+    public int shieldHealth = 100;
+    public float shieldRechargeTime = 3.0f;
+    public float shieldDownTime = 0.5f;
+    private float tempShieldDownTime = 0.5f;
+    private float tempShieldRechargeTime = 3.0f;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D collider;
     bool enableShield = false;
+    bool shieldDown = false;
     public static bool shieldIsActive = false;
     Vector3 originalShieldSize;
 
     //bool to use to apply shield length change
     public static bool changeShieldLength = false;
     public static bool revertShieldLength = false;
+    public static bool shieldRecharging = false;
+
+    private int startingShieldHealth = 100;
 
 
     // Start is called before the first frame update
@@ -24,7 +33,12 @@ public class ShieldScript : MonoBehaviour
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         collider = this.GetComponent<BoxCollider2D>();
+
         originalShieldSize = transform.localScale;
+
+        tempShieldRechargeTime = shieldRechargeTime;
+        startingShieldHealth = shieldHealth;
+        tempShieldDownTime = shieldDownTime;
     }
 
     // Update is called once per frame
@@ -52,9 +66,10 @@ public class ShieldScript : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             enableShield = false;
+            shieldDown = true;
         }
 
-        if (enableShield && !shieldIsActive)
+        if (enableShield && !shieldIsActive && !shieldRecharging && !shieldDown)
         {
             ActivateShield();
             shieldIsActive = true;
@@ -64,6 +79,34 @@ public class ShieldScript : MonoBehaviour
         {
             DeactivateShield();
             shieldIsActive = false;
+        }
+
+        if(shieldHealth <= 0)
+        {
+            shieldRecharging = true;
+        }
+
+        if(shieldRecharging)
+        {
+                tempShieldRechargeTime -= Time.deltaTime;
+
+                if(tempShieldRechargeTime <= 0)
+                {
+                    shieldHealth = startingShieldHealth;
+                    shieldRecharging = false;
+                    tempShieldRechargeTime = shieldRechargeTime;
+                }
+        }
+
+        if(shieldDown)
+        {
+            tempShieldDownTime -= Time.deltaTime;
+
+            if (tempShieldDownTime <= 0)
+            {
+                shieldDown = false;
+                tempShieldDownTime = shieldDownTime;
+            }
         }
     }
 
@@ -75,6 +118,7 @@ public class ShieldScript : MonoBehaviour
         if (proj != null)
         {
             ReflectProjectile(proj, other, reflectForce);
+            shieldHealth -= 10;
         }
     }
 
