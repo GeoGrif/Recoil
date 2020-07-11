@@ -69,17 +69,18 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("projectile has hit another projectile ");
 
-        if (checkForMinVelocity && (rb.velocity.x < minVelocity && rb.velocity.x > -minVelocity) && (rb.velocity.y < minVelocity && rb.velocity.y > -minVelocity))
-        {
-            tempTimeToDestroy -= Time.deltaTime;
-            if (tempTimeToDestroy < 0)
+            if (checkForMinVelocity && (rb.velocity.x < minVelocity && rb.velocity.x > -minVelocity) && (rb.velocity.y < minVelocity && rb.velocity.y > -minVelocity))
             {
-                Destroy(this.gameObject);
+                tempTimeToDestroy -= Time.deltaTime;
+                if (tempTimeToDestroy < 0)
+                {
+                    Destroy(this.gameObject);
+                }
             }
-        }
-        else
-        {
-            tempTimeToDestroy = timeToDestroy;
+            else
+            {
+                tempTimeToDestroy = timeToDestroy;
+            }
         }
     }
 }
