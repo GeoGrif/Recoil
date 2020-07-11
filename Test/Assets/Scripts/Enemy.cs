@@ -45,4 +45,13 @@ public class Enemy : MonoBehaviour
             lineOfSight = true;
         }                       
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.GetComponent<Projectile>() != null)
+        {
+            Destroy(other.gameObject);
+            health--;
+        }
+    }
 }

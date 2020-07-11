@@ -72,8 +72,6 @@ public class Projectile : MonoBehaviour
 
             Vector3 explosionPos = transform.position;
 
-            ShakeBehavior.TriggerShake();
-
             Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, ExplosiveRange);
 
             foreach (Collider2D hit in colliders)

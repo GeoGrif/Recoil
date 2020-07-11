@@ -8,8 +8,6 @@ public class PlayerScript : MonoBehaviour
 
     float health = 100;
     Rigidbody2D prb;
-
-
     
 
 
@@ -21,7 +19,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Projectile")
+        if (collision.collider.tag == "Projectile" && collision.otherCollider != this.gameObject.transform.GetChild(4))
         {
             health -= 10;
             Debug.Log("the current health is: " + health);

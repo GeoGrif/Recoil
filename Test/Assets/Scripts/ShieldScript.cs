@@ -7,6 +7,9 @@ public class ShieldScript : MonoBehaviour
     //can be used to change the shield length
     public float shieldLengthModifier = 2.0f;
     public float reflectForce = 250.0f;
+    public int shieldHealth = 100;
+    public float shieldRechargeTime = 3.0f;
+    private float tempShieldRechargeTime = 3.0f;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D collider;
@@ -17,6 +20,9 @@ public class ShieldScript : MonoBehaviour
     //bool to use to apply shield length change
     public static bool changeShieldLength = false;
     public static bool revertShieldLength = false;
+    public static bool shieldRecharging = false;
+
+    private int startingShieldHealth = 100;
 
 
     // Start is called before the first frame update
@@ -24,7 +30,11 @@ public class ShieldScript : MonoBehaviour
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         collider = this.GetComponent<BoxCollider2D>();
+
         originalShieldSize = transform.localScale;
+
+        tempShieldRechargeTime = shieldRechargeTime;
+        startingShieldHealth = shieldHealth;
     }
 
     // Update is called once per frame
@@ -54,7 +64,7 @@ public class ShieldScript : MonoBehaviour
             enableShield = false;
         }
 
-        if (enableShield && !shieldIsActive)
+        if (enableShield && !shieldIsActive && !shieldRecharging)
         {
             ActivateShield();
             shieldIsActive = true;
@@ -64,6 +74,21 @@ public class ShieldScript : MonoBehaviour
         {
             DeactivateShield();
             shieldIsActive = false;
+        }
+
+        if(shieldHealth <= 0)
+        {
+            shieldRecharging = true;
+        }
+
+        if(shieldRecharging)
+        {
+                tempShieldRechargeTime -= Time.deltaTime;
+                if(tempShieldRechargeTime <= 0)
+                {
+                    shieldHealth = startingShieldHealth;
+                    shieldRecharging = false;
+                }
         }
     }
 
@@ -75,6 +100,7 @@ public class ShieldScript : MonoBehaviour
         if (proj != null)
         {
             ReflectProjectile(proj, other, reflectForce);
+            shieldHealth -= 10;
         }
     }
 
