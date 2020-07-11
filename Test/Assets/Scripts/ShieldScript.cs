@@ -4,24 +4,44 @@ using UnityEngine;
 
 public class ShieldScript : MonoBehaviour
 {
-    [SerializeField] private float shieldLength = 1.0f;
+    //can be used to change the shield length
+    public float shieldLengthModifier = 2.0f;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D collider;
     bool enableShield = false;
     bool shieldIsActive = false;
+    Vector3 originalShieldSize;
 
-    
+    //bool to use to apply shield length change
+    public static bool changeShieldLength = false;
+    public static bool revertShieldLength = false;
+
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         collider = this.GetComponent<BoxCollider2D>();
+        originalShieldSize = transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(changeShieldLength)
+        {
+            //for powerups etc
+            ChangeShieldLength(shieldLengthModifier);            
+            changeShieldLength = false;
+        }
+
+        if (revertShieldLength)
+        {
+            //for powerups etc
+            RevertShieldLength();
+            revertShieldLength = false;
+        }
+
         if (Input.GetMouseButtonDown(1))
         {
             enableShield = true;
@@ -55,5 +75,15 @@ public class ShieldScript : MonoBehaviour
     {
         spriteRenderer.enabled = false;
         collider.enabled = false;
+    }
+
+    void ChangeShieldLength(float modifier)
+    {
+        transform.localScale += new Vector3(modifier, 0f, 0f);
+    }
+
+    void RevertShieldLength()
+    {
+        transform.localScale = new Vector3(originalShieldSize.x, originalShieldSize.y, originalShieldSize.z);
     }
 }
