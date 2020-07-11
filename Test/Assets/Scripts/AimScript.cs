@@ -33,16 +33,20 @@ public abstract class AimScript : MonoBehaviour
         
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
-        Aim();
-
-        ObjectPosition = gameObject.transform.position;
-
-        if (Input.GetMouseButtonDown(0) && !ShieldScript.shieldIsActive)
+        if (GameController.isPaused == false)
         {
-            Shoot();
+            Aim();
+
+            ObjectPosition = gameObject.transform.position;
+            if (Input.GetMouseButtonDown(0) && !ShieldScript.shieldIsActive)
+            {
+                Shoot();
+            }
         }
     }
 

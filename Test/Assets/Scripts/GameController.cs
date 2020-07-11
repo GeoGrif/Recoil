@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    
+    [HideInInspector] public static bool isPaused = false;
+
     [HideInInspector] public int level = 1;
 
     private static GameController privateInstance;

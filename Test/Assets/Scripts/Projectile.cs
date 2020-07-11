@@ -9,8 +9,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float maxVelocity = 50.0f;
     [SerializeField] private float minVelocity = 5.0f;
     [SerializeField] private float timeToDestroy = 1.5f;
-    [SerializeField] private float ExplosiveRange = 5.5f;
-    [SerializeField] private float ExplosivePower = 500.5f;
+    [SerializeField] private float ExplosiveRange = 0.1f;
+    [SerializeField] private float ExplosivePower = 10f;
 
 
     private float tempTimeToDestroy = 1.5f;

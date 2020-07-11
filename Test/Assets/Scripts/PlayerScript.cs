@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -24,6 +25,14 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (health < 0)
+        {
+            Time.timeScale = 0f;
+            GameController.isPaused = true;
+        }
+    }
 
 
 }

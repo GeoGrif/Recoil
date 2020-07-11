@@ -6,6 +6,7 @@ public class PlayerAimScript : AimScript
 {
     Vector3 mousePos;
     Vector3 worldMousePos;
+    
 
     
     public override bool ShouldShoot()
@@ -26,6 +27,7 @@ public class PlayerAimScript : AimScript
 
         //turn to face a direction
         transform.up = direction;
+
     }
 
 }
