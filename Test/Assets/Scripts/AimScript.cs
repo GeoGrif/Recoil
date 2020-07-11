@@ -20,7 +20,10 @@ public abstract class AimScript : MonoBehaviour
     [SerializeField] public Rigidbody2D ProjectileObject;
 
 
-    public float projectileSpeed = 100.0f;
+
+    [SerializeField]  public float projectileSpeed = 100.0f;
+
+
     public float playerPushSpeed = 300.0f;
 
 
@@ -66,8 +69,10 @@ public abstract class AimScript : MonoBehaviour
         rot = new Vector3(rot.x, rot.y, rot.z + 180);      
      
 
+        Vector3 handPosition = gameObject.transform.GetChild(0).position;
+
         //instantiate at the player's position and at player's rotation
-        projectile = Instantiate(ProjectileObject, transform.position, Quaternion.Euler(rot));
+        projectile = Instantiate(ProjectileObject, handPosition, Quaternion.Euler(rot));
         Debug.Log("Shot fired!");
 
         gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
