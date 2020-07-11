@@ -121,6 +121,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &20531494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5019441942849387982, guid: e08bd68a59be5a941b7804f7593dbb30,
+    type: 3}
+  m_PrefabInstance: {fileID: 5019441942926783278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &20531500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20531494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49b6a7bcc52c5c4cae20d722aa40e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &41620272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1288751363500676858, guid: c740e397fca188241a369b500184d989,
@@ -515,7 +533,7 @@ GameObject:
   - component: {fileID: 1152112503}
   - component: {fileID: 1152112502}
   - component: {fileID: 1152112505}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -644,7 +662,7 @@ GameObject:
   - component: {fileID: 1400499519}
   - component: {fileID: 1400499518}
   - component: {fileID: 1400499517}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4758,10 +4776,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5019441942849387979, guid: e08bd68a59be5a941b7804f7593dbb30,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019441942849387981, guid: e08bd68a59be5a941b7804f7593dbb30,
+        type: 3}
+      propertyPath: playerPushSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 5019441942849387982, guid: e08bd68a59be5a941b7804f7593dbb30,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019441942849387982, guid: e08bd68a59be5a941b7804f7593dbb30,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019441943461759402, guid: e08bd68a59be5a941b7804f7593dbb30,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08bd68a59be5a941b7804f7593dbb30, type: 3}

@@ -20,9 +20,8 @@ public abstract class AimScript : MonoBehaviour
     [SerializeField] public Rigidbody2D ProjectileObject;
 
 
-    [SerializeField]  public float projectileSpeed = 100.0f;
-
-    [SerializeField] public float playerblowback = 10.0f;
+    public float projectileSpeed = 100.0f;
+    public float playerPushSpeed = 300.0f;
 
 
     // Start is called before the first frame update
@@ -64,16 +63,14 @@ public abstract class AimScript : MonoBehaviour
         Rigidbody2D projectile;
 
         Vector3 rot = transform.rotation.eulerAngles;
-        rot = new Vector3(rot.x, rot.y, rot.z + 180);
-
-
-        Vector3 handPosition = gameObject.transform.GetChild(0).position;
+        rot = new Vector3(rot.x, rot.y, rot.z + 180);      
+     
 
         //instantiate at the player's position and at player's rotation
-        projectile = Instantiate(ProjectileObject, handPosition, Quaternion.Euler(rot));
+        projectile = Instantiate(ProjectileObject, transform.position, Quaternion.Euler(rot));
         Debug.Log("Shot fired!");
 
-        gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerblowback);
+        gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerPushSpeed);
 
 
         //add the force in the correct direction
