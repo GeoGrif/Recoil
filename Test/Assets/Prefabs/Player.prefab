@@ -83,7 +83,7 @@ MonoBehaviour:
   ProjectileObject: {fileID: 2319002751561275453, guid: 6a5d0a602d3a0db47bc850d427c30dd3,
     type: 3}
   projectileSpeed: 300
-  playerblowback: 10
+  playerPushSpeed: 1000
 --- !u!212 &5019441942849387980
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 2
-  m_LinearDrag: 1
+  m_LinearDrag: 2
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
