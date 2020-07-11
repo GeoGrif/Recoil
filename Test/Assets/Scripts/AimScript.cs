@@ -63,8 +63,8 @@ public abstract class AimScript : MonoBehaviour
         Rigidbody2D projectile;
 
         Vector3 rot = transform.rotation.eulerAngles;
-        rot = new Vector3(rot.x, rot.y, rot.z + 180);
-
+        rot = new Vector3(rot.x, rot.y, rot.z + 180);      
+     
 
         //instantiate at the player's position and at player's rotation
         projectile = Instantiate(ProjectileObject, transform.position, Quaternion.Euler(rot));
