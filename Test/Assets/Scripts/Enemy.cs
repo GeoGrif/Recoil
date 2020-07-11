@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 3.0f;
     public float aggroRange = 5.0f;
     public float range = 5.0f;
+    public float projectileSpeed = 100.0f;
 
     public Rigidbody2D projectile;
 
@@ -37,8 +38,11 @@ public class Enemy : MonoBehaviour
 
             if (!hasFired)
             {
-                FireForwards();
-                hasFired = true;
+                if(Vector2.Distance(playerPos, transform.position) < range)
+                {
+                    FireForwards();
+                    hasFired = true;
+                }
             }
         }
 
@@ -60,12 +64,13 @@ public class Enemy : MonoBehaviour
         targetPos.y = targetPos.y - transform.position.y;
 
         float angleToRotate = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, -angleToRotate));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angleToRotate));
     }
 
     private void FireForwards()
     {
-        Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, 0));
-        projectile.AddForce(transform.right * 100.0f);
+        Rigidbody2D proj;
+        proj = Instantiate(projectile, transform.position, transform.rotation);
+        proj.AddForce(transform.right * projectileSpeed);
     }
 }
