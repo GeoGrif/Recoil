@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+
+    [SerializeField] private GameObject UI;
     
     [HideInInspector] public static bool isPaused = false;
 
@@ -13,6 +16,7 @@ public class GameController : MonoBehaviour
 
     private List<GameObject> _Projectiles;
    
+
 
     public static GameController instance
     {
@@ -62,5 +66,17 @@ public class GameController : MonoBehaviour
     {
         //make sure we don't destroy this instance
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Update()
+    {
+        if (isPaused)
+        {
+            UI.SetActive(true);
+        }   
+        else
+        {
+            UI.SetActive(false);
+        }
     }
 }
