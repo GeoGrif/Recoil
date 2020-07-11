@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D prb;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.collider.tag == "Projectile")
         {
             health -= 10;
-            Debug.Log(health);
+            Debug.Log("the current health is: " + health);
         }
     }
 
