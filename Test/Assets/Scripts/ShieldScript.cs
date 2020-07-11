@@ -6,6 +6,7 @@ public class ShieldScript : MonoBehaviour
 {
     //can be used to change the shield length
     public float shieldLengthModifier = 2.0f;
+    public float reflectForce = 250.0f;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D collider;
@@ -16,6 +17,7 @@ public class ShieldScript : MonoBehaviour
     //bool to use to apply shield length change
     public static bool changeShieldLength = false;
     public static bool revertShieldLength = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -85,5 +87,20 @@ public class ShieldScript : MonoBehaviour
     void RevertShieldLength()
     {
         transform.localScale = new Vector3(originalShieldSize.x, originalShieldSize.y, originalShieldSize.z);
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        Projectile proj;
+        Rigidbody2D rb;
+
+        proj = other.gameObject.GetComponent<Projectile>();
+
+        if(proj != null)
+        {
+            Debug.Log("Adding force to " + proj);
+            rb = proj.GetComponent<Rigidbody2D>();
+            rb.AddForce(proj.transform.up * 250.0f);
+        }
     }
 }
