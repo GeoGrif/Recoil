@@ -40,7 +40,7 @@ public abstract class AimScript : MonoBehaviour
 
         ObjectPosition = gameObject.transform.position;
 
-        if (Input.GetMouseButtonDown(0) && !ShieldScript.shieldIsActive)
+        if (ShouldShoot() && !ShieldScript.shieldIsActive)
         {
             Shoot();
         }

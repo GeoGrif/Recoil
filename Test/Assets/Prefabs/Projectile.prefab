@@ -146,5 +146,6 @@ MonoBehaviour:
   maxVelocity: 50
   minVelocity: 5
   timeToDestroy: 1.5
-  ExplosiveRange: 10.5
-  ExplosivePower: 50
+  ExplosiveRange: 5
+  ExplosivePower: 25
+  Damage: 10
