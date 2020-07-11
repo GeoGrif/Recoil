@@ -13,8 +13,6 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float ExplosivePower = 10f;
     [SerializeField] public float Damage = 10.0f;
 
-
-
     private float tempTimeToDestroy = 1.5f;
 
     void Start()
@@ -71,9 +69,10 @@ public class Projectile : MonoBehaviour
         //if there is a collision and it's with this object. 
         if (collision.collider.gameObject.tag == "Projectile" && collision.otherCollider.gameObject.tag == "Projectile")
         {
-            Debug.Log("projectile has hit another projectile ");
 
             Vector3 explosionPos = transform.position;
+
+            ShakeBehavior.TriggerShake();
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, ExplosiveRange);
 
@@ -96,10 +95,10 @@ public class Projectile : MonoBehaviour
 
                     Vector3 forceDirection = force * explosionDir;
 
-                    Debug.Log("Evplosive force " + force);
-                    Debug.Log("explosionDistance " + explosionDistance);
-                    Debug.Log("Evplosive direction vector " + forceDirection);
-                    Debug.Log("explosing on object: " + rb.gameObject.name);
+                    //Debug.Log("Evplosive force " + force);
+                    //Debug.Log("explosionDistance " + explosionDistance);
+                    //Debug.Log("Evplosive direction vector " + forceDirection);
+                    //Debug.Log("explosing on object: " + rb.gameObject.name);
 
                     rb.AddForce(forceDirection, ForceMode2D.Impulse);
                 }
