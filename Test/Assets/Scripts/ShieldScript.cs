@@ -67,6 +67,17 @@ public class ShieldScript : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Projectile proj;
+        proj = other.gameObject.GetComponent<Projectile>();
+
+        if (proj != null)
+        {
+            ReflectProjectile(proj, other, reflectForce);
+        }
+    }
+
     void ActivateShield()
     {
         spriteRenderer.enabled = true;
@@ -89,18 +100,14 @@ public class ShieldScript : MonoBehaviour
         transform.localScale = new Vector3(originalShieldSize.x, originalShieldSize.y, originalShieldSize.z);
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    void ReflectProjectile(Projectile projectile, Collision2D collision, float force)
     {
-        Projectile proj;
         Rigidbody2D rb;
 
-        proj = other.gameObject.GetComponent<Projectile>();
+        Vector2 dir = new Vector2(collision.contacts[0].point.x - transform.position.x, collision.contacts[0].point.y - transform.position.y);
+        dir = dir.normalized;
 
-        if(proj != null)
-        {
-            Debug.Log("Adding force to " + proj);
-            rb = proj.GetComponent<Rigidbody2D>();
-            rb.AddForce(proj.transform.up * 250.0f);
-        }
+        rb = projectile.GetComponent<Rigidbody2D>();
+        rb.AddForce(dir * force);
     }
 }
