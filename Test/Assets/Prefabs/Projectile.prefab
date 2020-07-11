@@ -148,4 +148,4 @@ MonoBehaviour:
   timeToDestroy: 1.5
   ExplosiveRange: 5
   ExplosivePower: 25
-  Damage: 10
+  Damage: 33.3
