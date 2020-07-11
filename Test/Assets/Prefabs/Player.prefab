@@ -142,7 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a7584f40df2344391100b02ce647a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimPosition: {x: 0, y: 0, z: 0}
   ObjectPosition: {x: 0, y: 0, z: 0}
   ProjectileObject: {fileID: 2319002751561275453, guid: 6a5d0a602d3a0db47bc850d427c30dd3,
     type: 3}

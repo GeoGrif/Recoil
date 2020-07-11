@@ -7,13 +7,11 @@ public class PlayerAimScript : AimScript
 {
     Vector3 mousePos;
     Vector3 worldMousePos;
+
     
-
-
-
     public override bool ShouldShoot()
     {
-        return Input.GetMouseButtonUp(0) && !ShieldScript.shieldIsActive;
+        return Input.GetMouseButtonUp(0);
     }
 
 
@@ -32,7 +30,10 @@ public class PlayerAimScript : AimScript
         {
             timeSpan += Time.deltaTime;
         }
-
+        else if (timeSpan > 0)
+        {
+            Debug.Log(" The current time span of the click is " + timeSpan);
+        }
         
        Vector3 handPosition = gameObject.transform.GetChild(0).position;
 
@@ -41,7 +42,6 @@ public class PlayerAimScript : AimScript
 
         //turn to face a direction
         transform.up = direction;
-
     }
 
 }

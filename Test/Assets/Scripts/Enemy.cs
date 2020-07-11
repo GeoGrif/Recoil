@@ -6,21 +6,17 @@ using UnityEngine.Assertions;
 public class Enemy : MonoBehaviour
 {
     public int health = 10;
-    public float moveSpeed = 3.0f;
-    public float aggroRange = 5.0f;
+    //public float moveSpeed = 3.0f;
+    //public float aggroRange = 5.0f;
     public float range = 5.0f;
-    public float projectileSpeed = 100.0f;
 
     public bool lineOfSight = false;
-
-    public Rigidbody2D projectile;
 
     public GameObject playerTarget;
     public BoxCollider2D targetCollider;
     public BoxCollider2D targetShieldCollider;
-    private Vector3 playerPos;
+    public Vector3 playerPos;
     private float tempFireRate;
-    private bool hasFired = false;
     private Vector3 dir;
 
     void Start()
@@ -33,15 +29,15 @@ public class Enemy : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
+        playerPos = playerTarget.transform.position;
 
         dir = playerPos - transform.position;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
         Debug.DrawRay(transform.position, dir, Color.green, 0.0f);
 
-        if (hit.collider != targetCollider || hit.collider != targetShieldCollider)
+        if (hit.collider != targetCollider && hit.collider != targetShieldCollider)
         {
-            //move around
             lineOfSight = false;
         }
         else
@@ -49,11 +45,4 @@ public class Enemy : MonoBehaviour
             lineOfSight = true;
         }                       
     }
-
-    //private void FireForwards()
-    //{
-    //    Rigidbody2D proj;
-    //    proj = Instantiate(projectile, transform.position, transform.rotation);
-    //    proj.AddForce(transform.right * projectileSpeed);
-    //}
 }

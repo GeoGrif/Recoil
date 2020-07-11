@@ -8,6 +8,7 @@ public class EnemyAimScript : AimScript
 {
     public float fireRate = 1.0f;
     [HideInInspector] public bool canFire = false;
+    private bool justFired = false;
     Enemy enemy;
     
     private GameObject player;
@@ -26,39 +27,37 @@ public class EnemyAimScript : AimScript
 
     public override bool ShouldShoot()
     {
-        return canFire && enemy.lineOfSight;
-    }
-
-    void Update()
-    {
-        playerPos = enemy.playerTarget.transform.position;
-        if (!canFire)
-        {
-            if (Vector2.Distance(playerPos, transform.position) < enemy.range)
-            {
-                canFire = true;
-            }
-        }
-
-        //check if we've fired
-        if (canFire)
-        {
-            tempFireRate -= Time.deltaTime;
-            if (tempFireRate < 0)
-            {
-                canFire = false;
-                tempFireRate = fireRate;
-            }
-        }
+        return canFire && enemy.lineOfSight && !justFired;
     }
 
     public override void Aim()
     {
-        targetPos.x = playerPos.x - transform.position.x;
-        targetPos.y = playerPos.y - transform.position.y;
+        targetPos.x = enemy.playerPos.x - transform.position.x;
+        targetPos.y = enemy.playerPos.y - transform.position.y;
 
         float angleToRotate = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angleToRotate));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angleToRotate - 90));
+
+        if (Vector2.Distance(enemy.playerPos, transform.position) < enemy.range)
+        {
+            canFire = true;
+            justFired = true;
+        }
+        else
+        {
+            canFire = false;
+        }
+
+        //check if we've fired
+        if (justFired)
+        {
+            tempFireRate -= Time.deltaTime;
+            if (tempFireRate < 0)
+            {
+                justFired = false;
+                tempFireRate = fireRate;
+            }
+        }
     }
 
 }
