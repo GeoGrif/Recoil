@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5019441942849387980}
   - component: {fileID: 5019441942849387983}
   - component: {fileID: 5019441942849387979}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5019441942849387982}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a55eb9d1b5e0df948a23b2364f824a0e, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 5019441943461759398}
   - component: {fileID: 5019441943461759401}
   - component: {fileID: 5019441943461759400}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
