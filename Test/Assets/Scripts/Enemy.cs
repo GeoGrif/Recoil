@@ -12,18 +12,23 @@ public class Enemy : MonoBehaviour
     public float range = 5.0f;
     public float projectileSpeed = 100.0f;
 
+
     public Rigidbody2D projectile;
 
     private GameObject player;
-    private Vector2 playerPos;
+    private BoxCollider2D playerCollider;
+    private BoxCollider2D shieldCollider;
+    private Vector3 playerPos;
     private float tempFireRate;
     private bool hasFired = false;
+    private bool lineOfSight = false;
 
     void Start()
     {
         player = GameObject.Find("Player");
         Assert.IsNotNull(player, "Player was null");
-
+        playerCollider = player.GetComponent<BoxCollider2D>();
+        shieldCollider = player.GetComponentInChildren<BoxCollider2D>();
         tempFireRate = fireRate;
     }
 
@@ -32,7 +37,7 @@ public class Enemy : MonoBehaviour
     {
         playerPos = player.transform.position;
 
-        if(Vector2.Distance(playerPos, transform.position) < aggroRange)
+        if(Vector2.Distance(playerPos, transform.position) < aggroRange && lineOfSight)
         {
             LookAt(playerPos);
 
@@ -56,6 +61,20 @@ public class Enemy : MonoBehaviour
                 tempFireRate = fireRate;
             }
         }
+
+        Vector3 dir = playerPos - transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
+        Debug.DrawRay(transform.position, dir, Color.green, 0.0f);
+
+        if (hit.collider != playerCollider)
+        {
+            //move around
+            lineOfSight = false;
+        }
+        else
+        {
+            lineOfSight = true;
+        }                       
     }
 
     private void LookAt(Vector2 targetPos)
