@@ -8,13 +8,6 @@ public class PlayerAimScript : AimScript
     Vector3 mousePos;
     Vector3 worldMousePos;
 
-    public float timeSpan;
-
-    /**
-    * the time in seconds to full charge 
-    */
-    [SerializeField] private float TotalChargeTime = 0.5f;
-
     
     public override bool ShouldShoot()
     {
