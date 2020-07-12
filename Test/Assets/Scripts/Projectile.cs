@@ -32,6 +32,8 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
+        transform.up = rb.velocity;
+
         //make sure we've achieved more than the min velocity once
         if (!checkForMinVelocity && (rb.velocity.x > minVelocity || rb.velocity.x < -minVelocity || rb.velocity.y > minVelocity || rb.velocity.y < -minVelocity))
         {
