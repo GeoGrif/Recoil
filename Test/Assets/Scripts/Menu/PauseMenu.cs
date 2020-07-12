@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     private void Start()
     {
-        gameObject.SetActive(true);
+        
     }
 
     public void Retry()

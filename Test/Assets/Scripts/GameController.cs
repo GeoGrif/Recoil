@@ -6,34 +6,29 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    private GameObject UI;
+    [SerializeField] public GameObject UI;
+
+
+    [SerializeField] public GameObject pauseMenu;
+
+    [SerializeField] public GameObject HUD;
     
     [HideInInspector] public static bool isPaused = false;
 
     [HideInInspector] public int level = 1;
 
-    private List<GameObject> _Projectiles;
+    private static float OriginalTimeScale;
 
 
     private void Start()
     {
-        UI = GameObject.FindGameObjectWithTag("Canvas");
-        
-        if(UI == null)Debug.Log("CANVAS");
+     
     }
-
 
     private void Update()
     {
-        if (isPaused)
-        {
-            Debug.Log("is paused");
-
-            UI.SetActive(true);
-        }
-        else
-        {
-            UI.SetActive(false);
-        }
     }
+
+
+
 }

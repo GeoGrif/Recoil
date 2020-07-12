@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Corridor.unity
     guid: 196b6c8dcc6c29b4e8d06dc2f7ccd96d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EnemyTest.unity
     guid: 95ab95f9f3ceaa34a812f4071f23d8bd
   m_configObjects: {}
