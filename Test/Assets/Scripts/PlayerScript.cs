@@ -9,7 +9,8 @@ public class PlayerScript : MonoBehaviour
 
     public float health = 100;
     Rigidbody2D prb;
-    
+
+    public float score = 0;
 
 
     // Start is called before the first frame update
@@ -24,6 +25,7 @@ public class PlayerScript : MonoBehaviour
         {
             health -= 10;
             Debug.Log("the current health is: " + health);
+            score -= 100;
         }
     }
 
@@ -34,6 +36,9 @@ public class PlayerScript : MonoBehaviour
             Time.timeScale = 0f;
             GameController.isPaused = true;
         }
+
+        score += System.Math.Abs(prb.velocity.x);
+        score += System.Math.Abs(prb.velocity.y);
     }
 
 }
