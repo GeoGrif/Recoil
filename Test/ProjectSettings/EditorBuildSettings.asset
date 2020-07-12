@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Maze.unity
     guid: 5675f8853b19672439def3f46ab543d4
+  - enabled: 1
+    path: Assets/Scenes/ZigZag.unity
+    guid: df78d15192a15f7498095952328a88b2
   m_configObjects: {}
