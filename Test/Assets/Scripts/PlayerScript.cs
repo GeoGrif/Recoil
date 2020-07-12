@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     public float score = 0;
 
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip damageSound;
     private bool playedDeathSound = false;
 
 
@@ -26,6 +27,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.collider.tag == "Projectile" && collision.otherCollider.gameObject.name != "Shield")
         {
+            Destroy(collision.gameObject);
+            AudioManager.instance.PlaySFX(damageSound);
             health -= 10;
             Debug.Log("the current health is: " + health);
             score -= 100;

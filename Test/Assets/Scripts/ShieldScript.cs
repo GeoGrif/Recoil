@@ -58,7 +58,6 @@ public class ShieldScript : MonoBehaviour
 
         if (revertShieldLength)
         {
-            //for powerups etc
             RevertShieldLength();
             revertShieldLength = false;
         }
