@@ -42,7 +42,7 @@ public class CameraScript : MonoBehaviour
             shakeDuration -= Time.deltaTime * dampingSpeed;
 
         }
-        else if(shakeDuration > 0)
+        else
         {
             shakeDuration = 0f;
             transform.position = new Vector3(player.transform.position.x, player.transform.position.y, height);
