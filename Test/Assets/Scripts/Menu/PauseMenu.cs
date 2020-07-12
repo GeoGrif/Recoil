@@ -11,14 +11,22 @@ public class PauseMenu : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+      
+    }
+
     public void Retry()
     {
         GameController.isPaused = false;
         
         Time.timeScale = 1f;
-        
-        SceneManager.LoadScene("EnemyTest");
 
+        Debug.Log("The level loder");
+
+        GameObject.FindGameObjectWithTag("GUIController").GetComponent<GUIControllerScript>().CloseMenu();
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

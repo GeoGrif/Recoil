@@ -22,6 +22,8 @@ public class Projectile : MonoBehaviour
 
     private float tempTimeToDestroy = 1.5f;
 
+    private bool isVisible;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -71,6 +73,17 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    private void OnBecameVisible()
+    {
+        isVisible = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
+
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         numberOfBounces++;
@@ -89,7 +102,11 @@ public class Projectile : MonoBehaviour
 
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
             rb.AddForce(dir * force);
-            AudioManager.instance.PlaySFX(ricochetSound);
+
+            if (isVisible)
+            {
+                AudioManager.instance.PlaySFX(ricochetSound);
+            }
 
             //Vector3 explosionPos = transform.position;
 
@@ -130,7 +147,10 @@ public class Projectile : MonoBehaviour
         }
         else if(collision.collider.gameObject.name != "Shield" || collision.collider.gameObject.tag != "Player" || collision.collider.gameObject.tag != "Enemy")
         {
-            AudioManager.instance.PlaySFX(ricochetSound);
+            if (isVisible)
+            {
+                AudioManager.instance.PlaySFX(ricochetSound);
+            }
         }
     }   
 }
