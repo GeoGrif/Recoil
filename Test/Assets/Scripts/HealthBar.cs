@@ -12,7 +12,7 @@ public class HealthBar : Bar
 
     public override Image GetBarImage()
     {
-        return GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
+        return gameObject.GetComponent<Image>();
     }
 
     public override float GetCurrentBarParcentage()
