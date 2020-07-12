@@ -10,8 +10,11 @@ public class ShieldScript : MonoBehaviour
     public int shieldHealth = 100;
     public float shieldRechargeTime = 3.0f;
     public float shieldDownTime = 0.5f;
+    public float timeBeforeRecharge = 1.0f;
+
     private float tempShieldDownTime = 0.5f;
     private float tempShieldRechargeTime = 3.0f;
+    private float tempTimeBeforeRecharge = 1.0f;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D collider;
@@ -26,6 +29,7 @@ public class ShieldScript : MonoBehaviour
     public static bool shieldRecharging = false;
 
     private int startingShieldHealth = 100;
+    private bool rechargeShield = false;
 
 
     // Start is called before the first frame update
@@ -39,6 +43,7 @@ public class ShieldScript : MonoBehaviour
         tempShieldRechargeTime = shieldRechargeTime;
         startingShieldHealth = shieldHealth;
         tempShieldDownTime = shieldDownTime;
+        tempTimeBeforeRecharge = timeBeforeRecharge;
     }
 
     // Update is called once per frame
@@ -73,12 +78,27 @@ public class ShieldScript : MonoBehaviour
         {
             ActivateShield();
             shieldIsActive = true;
+            tempTimeBeforeRecharge = timeBeforeRecharge;
         }
 
         if (!enableShield && shieldIsActive)
         {
             DeactivateShield();
             shieldIsActive = false;
+        }
+
+        //for when we want the natural shield recharge if its not broken
+        if(!shieldIsActive && !shieldRecharging && shieldHealth < startingShieldHealth)
+        {
+            tempTimeBeforeRecharge -= Time.deltaTime;
+            if(tempTimeBeforeRecharge <= 0)
+            {
+                rechargeShield = true;
+            }
+        }
+        else
+        {
+            rechargeShield = false;
         }
 
         if(shieldHealth <= 0)
@@ -109,6 +129,14 @@ public class ShieldScript : MonoBehaviour
                 shieldDown = false;
                 tempShieldDownTime = shieldDownTime;
             }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(rechargeShield)
+        {
+            shieldHealth += 1;
         }
     }
 
