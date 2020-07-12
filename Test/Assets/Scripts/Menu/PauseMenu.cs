@@ -13,8 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-
-        Debug.Log("The level loder");
+      
     }
 
     public void Retry()
@@ -24,6 +23,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         Debug.Log("The level loder");
+
+        GameObject.FindGameObjectWithTag("GUIController").GetComponent<GUIControllerScript>().CloseMenu();
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
