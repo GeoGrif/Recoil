@@ -146,7 +146,7 @@ MonoBehaviour:
   ProjectileObject: {fileID: 2319002751561275453, guid: 6a5d0a602d3a0db47bc850d427c30dd3,
     type: 3}
   projectileSpeed: 300
-  shootSound: {fileID: 8300000, guid: 1ed7435ea31d2744abe6408b2ac1eb6c, type: 3}
+  shootSound: {fileID: 8300000, guid: bdc77ceaeddde1646933eea980d3beac, type: 3}
   playerPushSpeed: 1000
   _TimeSpan: 0
   TotalChargeTime: 0.5
