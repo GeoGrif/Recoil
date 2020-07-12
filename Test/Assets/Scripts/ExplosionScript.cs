@@ -33,7 +33,6 @@ public class ExplosionScript : MonoBehaviour
             {
                 Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
 
-
                 if (rb != null)
                 {
                     Vector3 hitPosition = rb.position;
