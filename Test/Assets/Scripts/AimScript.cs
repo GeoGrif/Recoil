@@ -16,6 +16,8 @@ public abstract class AimScript : MonoBehaviour
 
     [SerializeField]  public float projectileSpeed = 100.0f;
 
+    [SerializeField] private AudioClip shootSound;
+
 
     public float playerPushSpeed = 300.0f;
 
@@ -39,6 +41,7 @@ public abstract class AimScript : MonoBehaviour
             if (ShouldShoot())
             {
                 Shoot();
+                AudioManager.instance.PlaySFX(shootSound);
             }
         }
     }

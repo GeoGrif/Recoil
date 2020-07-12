@@ -13,6 +13,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float ExplosivePower = 10f;
     [SerializeField] public float Damage = 10.0f;
 
+    [SerializeField] private AudioClip explosionSound;
+    [SerializeField] private AudioClip ricochetSound;
+
     private float tempTimeToDestroy = 1.5f;
 
     void Start()
@@ -73,6 +76,7 @@ public class Projectile : MonoBehaviour
             Vector3 explosionPos = transform.position;
 
             CameraScript.TriggerShake();
+            AudioManager.instance.PlaySFX(explosionSound);
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, ExplosiveRange);
 
@@ -121,5 +125,9 @@ public class Projectile : MonoBehaviour
             Destroy(collision.otherCollider.gameObject);
             Destroy(collision.collider.gameObject);
         }
-    }
+        else if(collision.collider.gameObject.name != "Shield" || collision.collider.gameObject.tag != "Player" || collision.collider.gameObject.tag != "Enemy")
+        {
+            AudioManager.instance.PlaySFX(ricochetSound);
+        }
+    }   
 }

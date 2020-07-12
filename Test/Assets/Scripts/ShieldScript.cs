@@ -30,7 +30,7 @@ public class ShieldScript : MonoBehaviour
 
     private int startingShieldHealth = 100;
     private bool rechargeShield = false;
-
+    [SerializeField] private AudioClip ricochetSound;
 
     // Start is called before the first frame update
     void Start()
@@ -183,5 +183,6 @@ public class ShieldScript : MonoBehaviour
 
         rb = projectile.GetComponent<Rigidbody2D>();
         rb.AddForce(dir * force);
+        AudioManager.instance.PlaySFX(ricochetSound);
     }
 }
