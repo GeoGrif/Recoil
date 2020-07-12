@@ -123,5 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplosiveRange: 10
   ExplosivePower: 30
-  Damage: 10
+  damage: 40
+  Explosion: {fileID: 4206689171261606371, guid: e621c2f5406a1a540ba0fb46ae22d81d,
+    type: 3}
   explosionSound: {fileID: 8300000, guid: 4fb5684e05c93934a8d3994023b7d273, type: 3}
