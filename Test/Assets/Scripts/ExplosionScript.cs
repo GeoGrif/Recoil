@@ -10,6 +10,7 @@ public class ExplosionScript : MonoBehaviour
     [SerializeField] private float ExplosiveRange = 3.0f;
     [SerializeField] private float ExplosivePower = 10f;
     [SerializeField] public int damage = 40;
+    [SerializeField] public GameObject Explosion;
 
     [SerializeField] private AudioClip explosionSound;
 
@@ -69,6 +70,9 @@ public class ExplosionScript : MonoBehaviour
             }
 
         }
+
+        Instantiate(Explosion, transform.position, Quaternion.identity);
+
         Destroy(this.gameObject);
     }
 
