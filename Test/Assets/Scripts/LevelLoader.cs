@@ -8,9 +8,17 @@ public class LevelLoader : MonoBehaviour
     public Animator animator;
     private int levelToLoad;
 
+
+
     public void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
+        animator.SetTrigger("FadeOut");
+    }
+
+    public void FadeToNextLevel()
+    {
+        levelToLoad = SceneManager.GetActiveScene().buildIndex + 1;
         animator.SetTrigger("FadeOut");
     }
 
