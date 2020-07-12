@@ -28,8 +28,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.collider.tag == "Projectile" && collision.otherCollider.gameObject.name != "Shield")
         {
             Destroy(collision.gameObject);
-            AudioManager.instance.PlaySFX(damageSound);
-            health -= 10;
+            takeDamage(10);
             Debug.Log("the current health is: " + health);
             score -= 100;
         }
@@ -52,6 +51,12 @@ public class PlayerScript : MonoBehaviour
 
         score += System.Math.Abs(prb.velocity.x);
         score += System.Math.Abs(prb.velocity.y);
+    }
+
+    public void takeDamage(int damage)
+    {
+        AudioManager.instance.PlaySFX(damageSound);
+        health -= damage;
     }
 
 }

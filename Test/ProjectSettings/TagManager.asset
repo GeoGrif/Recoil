@@ -12,8 +12,8 @@ TagManager:
   - ChargeBar
   - Score
   - ShieldBar
-  - GameControl
-  - GUIController
+  - Enemy
+  - Brakeable
   layers:
   - Default
   - TransparentFX

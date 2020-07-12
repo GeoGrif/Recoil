@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 10;
+    public int health = 20;
     //public float moveSpeed = 3.0f;
     //public float aggroRange = 5.0f;
     public float range = 5.0f;
@@ -50,14 +50,19 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.GetComponent<Projectile>() != null)
-        {
+        {           
             Destroy(other.gameObject);
-            health--;
+            takeDamage((int)Mathf.Round(other.gameObject.GetComponent<Projectile>().Damage));
             if(health <= 0)
             {
                 AudioManager.instance.PlaySFX(deathSound);
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
     }
 }

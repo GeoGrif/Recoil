@@ -16,6 +16,8 @@ public class BrakeableObject : MonoBehaviour
 
     [SerializeField] private float TotalHealth;
 
+    float projectileDamage;
+
 
 
     // Start is called before the first frame update
@@ -34,13 +36,14 @@ public class BrakeableObject : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "Projectile")
         {
-            RemoveHealth(collision.collider.gameObject);
+            projectileDamage = collision.gameObject.GetComponent<Projectile>().Damage;
+            RemoveHealth(projectileDamage);
         }
     }
 
-    private void RemoveHealth(GameObject projectile)
+    public void RemoveHealth(float damage)
     {
-        CurrentHealth -= projectile.GetComponent<Projectile>().Damage;
+        CurrentHealth -= damage;
 
         Color tempColour = Cracks.color;
 
