@@ -12,12 +12,16 @@ public abstract class Bar : MonoBehaviour
         BarImage = GetBarImage();
 
         SetObject();
+
+        BarImage.fillAmount = GetStartingParcentage();
     }
 
     public abstract Image GetBarImage();
     public abstract void  SetObject();
 
     public abstract float GetCurrentBarParcentage();
+
+    public abstract float GetStartingParcentage();
 
     private void Update()
     {

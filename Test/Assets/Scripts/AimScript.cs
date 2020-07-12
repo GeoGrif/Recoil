@@ -20,12 +20,12 @@ public abstract class AimScript : MonoBehaviour
     public float playerPushSpeed = 300.0f;
 
 
-    public float timeSpan;
+    public float _TimeSpan;
 
     /**
     * the time in seconds to full charge 
     */
-    [SerializeField] protected float TotalChargeTime = 0.5f;
+    [SerializeField] public float TotalChargeTime = 0.5f;
 
 
 
@@ -64,7 +64,7 @@ public abstract class AimScript : MonoBehaviour
         Vector3 rot = transform.rotation.eulerAngles;
         rot = new Vector3(rot.x, rot.y, rot.z + 180);      
 
-        int totalShots = (int)(timeSpan / TotalChargeTime) + 1; //calculate the total charge based on 
+        int totalShots = (int)(_TimeSpan / TotalChargeTime) + 1; //calculate the total charge based on 
 
         for (int i = 0; i < totalShots; i++)
         {

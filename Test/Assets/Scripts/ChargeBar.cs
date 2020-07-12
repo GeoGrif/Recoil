@@ -3,39 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : Bar
+public class ChargeBar : Bar
 {
-
     private GameObject Player;
 
-    private float MaxHealth;
+    private float MaxCharge;
 
     public override Image GetBarImage()
     {
-        return GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
+        return GameObject.FindGameObjectWithTag("ChargeBar").GetComponent<Image>();
     }
 
     public override float GetCurrentBarParcentage()
     {
-        return Player.GetComponent<PlayerScript>().health / MaxHealth;
+        return Player.GetComponent<PlayerAimScript>().GetCurrentChagePercentage();
     }
-
 
     public override float GetStartingParcentage()
     {
-        return Player.GetComponent<PlayerScript>().health;
+       return Player.GetComponent<PlayerAimScript>().GetCurrentChagePercentage();
     }
 
     public override void SetObject()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
 
-        if (Player != null) 
+        if (Player != null)
         {
             Debug.Log("Player found ");
         }
-
-
-        MaxHealth = Player.GetComponent<PlayerScript>().health;
     }
+
 }

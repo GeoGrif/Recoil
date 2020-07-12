@@ -23,12 +23,12 @@ public class PlayerAimScript : AimScript
         
         if (Input.GetMouseButtonDown(0)) 
         {
-            timeSpan = 0;
+            _TimeSpan = 0;
         }
 
         if (Input.GetMouseButton(0))
         {
-            timeSpan += Time.deltaTime;
+            _TimeSpan += Time.deltaTime;
         }
 
         
@@ -41,4 +41,12 @@ public class PlayerAimScript : AimScript
         transform.up = direction;
     }
 
+
+
+    public float GetCurrentChagePercentage()
+    {
+        if (_TimeSpan > 4) _TimeSpan = 4;
+
+        return _TimeSpan / TotalChargeTime;
+    }
 }

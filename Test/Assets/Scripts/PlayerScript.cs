@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -34,6 +35,5 @@ public class PlayerScript : MonoBehaviour
             GameController.isPaused = true;
         }
     }
-
 
 }
