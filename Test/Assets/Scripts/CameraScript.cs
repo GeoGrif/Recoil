@@ -7,7 +7,7 @@ public class CameraScript : MonoBehaviour
 {
 
 
-    private static float shakeDuration = 0f;
+    public static float shakeDuration = 0f;
     private float shakeMagnitude = 0.1f;
     private float dampingSpeed = 1f;
 
