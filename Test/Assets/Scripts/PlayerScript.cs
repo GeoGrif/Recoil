@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     public float score = 0;
 
     [SerializeField] private AudioClip deathSound;
+    private bool playedDeathSound = false;
 
 
     // Start is called before the first frame update
@@ -35,7 +36,13 @@ public class PlayerScript : MonoBehaviour
     {
         if (health <= 0)
         {
-            AudioManager.instance.PlaySFX(deathSound);
+            CameraScript.shakeDuration = 0f;
+
+            if (!playedDeathSound)
+            {
+                AudioManager.instance.PlaySFX(deathSound);
+                playedDeathSound = true;
+            }
             Time.timeScale = 0f;
             GameController.isPaused = true;
         }

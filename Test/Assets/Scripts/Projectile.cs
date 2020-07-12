@@ -73,41 +73,41 @@ public class Projectile : MonoBehaviour
         if (collision.collider.gameObject.tag == "Projectile" && collision.otherCollider.gameObject.tag == "Projectile")
         {
 
-            Vector3 explosionPos = transform.position;
+            //Vector3 explosionPos = transform.position;
 
-            CameraScript.TriggerShake();
-            AudioManager.instance.PlaySFX(explosionSound);
+            //CameraScript.TriggerShake();
+            //AudioManager.instance.PlaySFX(explosionSound);
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, ExplosiveRange);
+            //Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, ExplosiveRange);
 
-            foreach (Collider2D hit in colliders)
-            {
-                Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+            //foreach (Collider2D hit in colliders)
+            //{
+            //    Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
 
-                if (rb != null) 
-                {
-                    Vector3 hitPosition = rb.position;
+            //    if (rb != null) 
+            //    {
+            //        Vector3 hitPosition = rb.position;
 
-                    var explosionDir = hitPosition - explosionPos;
-                    var explosionDistance = explosionDir.magnitude;
+            //        var explosionDir = hitPosition - explosionPos;
+            //        var explosionDistance = explosionDir.magnitude;
 
-                    explosionDistance /= ExplosiveRange;
+            //        explosionDistance /= ExplosiveRange;
 
-                    explosionDir.Normalize();
+            //        explosionDir.Normalize();
 
-                    float force = Mathf.Lerp(0, ExplosivePower, (1 - explosionDistance));
+            //        float force = Mathf.Lerp(0, ExplosivePower, (1 - explosionDistance));
 
-                    Vector3 forceDirection = force * explosionDir;
+            //        Vector3 forceDirection = force * explosionDir;
 
-                    //Debug.Log("Evplosive force " + force);
-                    //Debug.Log("explosionDistance " + explosionDistance);
-                    //Debug.Log("Evplosive direction vector " + forceDirection);
-                    //Debug.Log("explosing on object: " + rb.gameObject.name);
+            //        //Debug.Log("Evplosive force " + force);
+            //        //Debug.Log("explosionDistance " + explosionDistance);
+            //        //Debug.Log("Evplosive direction vector " + forceDirection);
+            //        //Debug.Log("explosing on object: " + rb.gameObject.name);
 
-                    rb.AddForce(forceDirection, ForceMode2D.Impulse);
-                }
+            //        rb.AddForce(forceDirection, ForceMode2D.Impulse);
+            //    }
                   
-            }
+            //}
 
             if (checkForMinVelocity && (rb.velocity.x < minVelocity && rb.velocity.x > -minVelocity) && (rb.velocity.y < minVelocity && rb.velocity.y > -minVelocity))
             {

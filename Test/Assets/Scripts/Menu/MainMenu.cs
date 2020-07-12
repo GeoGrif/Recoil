@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         //load the next scene from build index - set this in file>build settings
-        levelLoader.FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        levelLoader.FadeToNextLevel();
     }
 
     public void Quit()

@@ -22,6 +22,6 @@ public class Score : MonoBehaviour
 
         _ScoreText.text = text;
 
-        Debug.Log(text);
+        //Debug.Log(text);
     }
 }
