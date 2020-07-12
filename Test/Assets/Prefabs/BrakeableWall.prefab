@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cracks: {fileID: 972325595185386507}
-  CurrentHealth: 100
-  TotalHealth: 100
+  CurrentHealth: 66
+  TotalHealth: 30
 --- !u!212 &972325595185386507
 SpriteRenderer:
   m_ObjectHideFlags: 0
