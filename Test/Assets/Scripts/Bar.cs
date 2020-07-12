@@ -27,6 +27,6 @@ public abstract class Bar : MonoBehaviour
     {
         BarImage.fillAmount = GetCurrentBarParcentage();
 
-        Debug.Log("the ccurrent fill amount is: " + BarImage.fillAmount);
+       // Debug.Log("the ccurrent fill amount is: " + BarImage.fillAmount);
     }
 }
