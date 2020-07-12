@@ -30,10 +30,7 @@ public class PlayerAimScript : AimScript
         {
             timeSpan += Time.deltaTime;
         }
-        else if (timeSpan > 0)
-        {
-            Debug.Log(" The current time span of the click is " + timeSpan);
-        }
+
         
        Vector3 handPosition = gameObject.transform.GetChild(0).position;
 

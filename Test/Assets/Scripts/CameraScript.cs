@@ -31,7 +31,7 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
 
-        if (shakeDuration > 0)
+        if (shakeDuration > 0 && !GameController.isPaused)
         {
             Vector3 shakePoint = Random.insideUnitCircle * shakeMagnitude;
 
@@ -41,10 +41,8 @@ public class CameraScript : MonoBehaviour
 
             shakeDuration -= Time.deltaTime * dampingSpeed;
 
-            //Debug.Log("ShakeDuration is" )
-
         }
-        else
+        else if(shakeDuration > 0)
         {
             shakeDuration = 0f;
             transform.position = new Vector3(player.transform.position.x, player.transform.position.y, height);
