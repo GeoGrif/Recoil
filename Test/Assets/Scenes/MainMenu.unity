@@ -1258,7 +1258,7 @@ GameObject:
   - component: {fileID: 1994906203}
   - component: {fileID: 1994906202}
   m_Layer: 5
-  m_Name: Quit_Text (1)
+  m_Name: Names
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1304,7 +1304,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'A Game By:
 
-    Max Cussans, Dale ?, George Griffiths and Jack Wilson'
+    Max Cussans, Dale Taylor, George Griffiths and Jack Wilson'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1373,10 +1373,10 @@ MonoBehaviour:
   m_margin: {x: -168.88644, y: 0, z: -171.37, w: 0}
   m_textInfo:
     textComponent: {fileID: 1994906202}
-    characterCount: 64
+    characterCount: 69
     spriteCount: 0
     spaceCount: 11
-    wordCount: 11
+    wordCount: 12
     linkCount: 0
     lineCount: 3
     pageCount: 1

@@ -149,3 +149,5 @@ MonoBehaviour:
   ExplosiveRange: 5
   ExplosivePower: 25
   Damage: 33.3
+  explosionSound: {fileID: 8300000, guid: 4fb5684e05c93934a8d3994023b7d273, type: 3}
+  ricochetSound: {fileID: 8300000, guid: 36ce95976b270a14785c06584ee46cc3, type: 3}
