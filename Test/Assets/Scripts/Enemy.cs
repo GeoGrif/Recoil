@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public Vector3 playerPos;
     private float tempFireRate;
     private Vector3 dir;
+    [SerializeField] private AudioClip deathSound;
 
     void Start()
     {
@@ -52,6 +53,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
             health--;
+            if(health <= 0)
+            {
+                AudioManager.instance.PlaySFX(deathSound);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
