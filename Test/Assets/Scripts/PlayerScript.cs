@@ -46,8 +46,8 @@ public class PlayerScript : MonoBehaviour
                 AudioManager.instance.PlaySFX(deathSound);
                 playedDeathSound = true;
             }
-            Time.timeScale = 0f;
-            GameController.isPaused = true;
+
+            GameObject.FindGameObjectWithTag("GUIController").GetComponent<GUIControllerScript>().OpenMenu();
         }
 
         score += System.Math.Abs(prb.velocity.x);

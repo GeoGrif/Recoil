@@ -33,6 +33,7 @@ public class ExplosionScript : MonoBehaviour
             {
                 Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
 
+
                 if (rb != null)
                 {
                     Vector3 hitPosition = rb.position;
@@ -48,10 +49,7 @@ public class ExplosionScript : MonoBehaviour
 
                     Vector3 forceDirection = force * explosionDir;
 
-                    Debug.Log("Evplosive force " + force);
                     Debug.Log("explosionDistance " + explosionDistance);
-                    Debug.Log("Evplosive direction vector " + forceDirection);
-                    Debug.Log("explosing on object: " + rb.gameObject.name);
 
                     rb.AddForce(forceDirection, ForceMode2D.Impulse);
                 }
