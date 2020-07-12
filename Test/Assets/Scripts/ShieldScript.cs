@@ -63,7 +63,7 @@ public class ShieldScript : MonoBehaviour
             enableShield = true;
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1) || shieldRecharging)
         {
             enableShield = false;
             shieldDown = true;
@@ -88,9 +88,11 @@ public class ShieldScript : MonoBehaviour
 
         if(shieldRecharging)
         {
-                tempShieldRechargeTime -= Time.deltaTime;
+            tempShieldRechargeTime -= Time.deltaTime;
+            shieldHealth = startingShieldHealth - (int)Mathf.Round((100 * (tempShieldRechargeTime / shieldRechargeTime)));
+            Debug.Log("Shield health is " + shieldHealth);
 
-                if(tempShieldRechargeTime <= 0)
+                if (tempShieldRechargeTime <= 0)
                 {
                     shieldHealth = startingShieldHealth;
                     shieldRecharging = false;
