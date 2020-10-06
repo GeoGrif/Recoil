@@ -5,40 +5,28 @@ using UnityEngine;
 
 public abstract class AimScript : MonoBehaviour
 {
-    /// <summary>
-    ///the position the object this script is attached to is currently at.  
-    /// </summary>
+
+    /**
+    * the position the object this script is aattached to is currently at.  
+    */
     [SerializeField]  private Vector3 ObjectPosition;
 
-    /// <summary>
-    ///add our projectile prefab in editor
-    /// </summary>
+    //add our projectile prefab in editor
     [SerializeField] public Rigidbody2D ProjectileObject;
 
-    /// <summary>
-    /// the initial speed of the projectile when fired. 
-    /// </summary>
     [SerializeField]  public float projectileSpeed = 100.0f;
 
-
-    /// <summary>
-    /// the sound made when a projectile is fired.
-    /// </summary>
     [SerializeField] private AudioClip shootSound;
 
-    /// <summary>
-    ///  the force applied to the object that is firing the projectile. 
-    /// </summary>
+
     public float playerPushSpeed = 300.0f;
 
-    /// <summary>
-    /// A time span to hold the current amount of charge.  
-    /// </summary>
+
     public float _TimeSpan;
 
-    /// <summary>
-    /// the time in seconds to full charge 
-    /// </summary>
+    /**
+    * the time in seconds to full charge 
+    */
     [SerializeField] public float TotalChargeTime = 0.5f;
 
 
@@ -58,21 +46,20 @@ public abstract class AimScript : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// weather the object this script is attached to should shoot or not.  <code>true</code> if the object should shoot.
-    /// </summary>
-    /// <returns> <code>true</code> if the object should shoot. else <code>false</code>.</returns>
+    /**
+    * weather the object this script is attached to should shoot or not.  
+    */
     public abstract bool ShouldShoot();
 
-    /// <summary>
-    /// Methed used to set the current aim position of this object 
-    /// </summary>
+    /**
+    * Methed used to set current aim position of this object 
+    */
     public abstract void Aim();
+ 
 
-
-    /// <summary>
-    /// method called when a projectile is fired.  
-    /// </summary>
+    /**
+    * method called when a projectile is fired.  
+    */
     private void Shoot()
     {
         Rigidbody2D projectile;
